@@ -8,7 +8,7 @@
     <style>
         body {
         
-            background-image: url('/images/valentine_back.webp');
+            background-image: url('https://i.ibb.co/P5zCQNr/valentine-back.webp');
             background-size: cover; /* Cover the entire page */
             background-position: center; /* Center the background image */
 
@@ -45,6 +45,14 @@
             transition: transform 0.3s ease;
         }
         .button-container {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+
+        }
         #noButton {
         position: absolute;
         right: 10; /* Initial position to ensure it has a position property set */
@@ -52,24 +60,15 @@
 
 }
 
-             /* Position the container absolutely to the parent */
-            bottom: 10px; /* Position it at the bottom of the parent container */
-            left: 0;
-            width: 100%;
-            text-align: center; /* Center buttons horizontally */
-            margin-top: 20px; /* Place buttons under the text */
-
-        }
-
     </style>
 </head>
 <body>
 
 <div class="invitation">
     <h1>Czy będziesz moją Walentynką?</h1>
-    <p class="languages">Czy będziesz moją Walentynką?</p>
-    <p class="languages">Ти будеш моєю Валентинкою?</p>
-    <p class="languages">იქნები ჩემი ვალენტინი?</p>   
+    <p class="languages">❤️Czy będziesz moją Walentynką? ❤️</p>
+    <p class="languages">❤️Ти будеш моєю Валентинкою?❤️</p>
+    <p class="languages">❤️იქნები ჩემი ვალენტინი?❤️</p>   
     <div class="button-container">
         <button id="yesButton" onclick="showResponse('yes')">Yes</button>
         <button id="noButton" onclick="showResponse('no')">No</button>
@@ -98,7 +97,7 @@
             noClickCount++;
             let messageIndex = noClickCount % encouragingMessages.length;
             responseElement.innerHTML = encouragingMessages[messageIndex];
-            yesButtonSize += 2; // Increase font size by 2px
+            yesButtonSize += 10; // Increase font size by 2px
             yesButton.style.fontSize = yesButtonSize + 'px'; // Apply new font size
             yesButton.style.padding = (25 + yesButtonSize / 16) + 'px ' + (20 + yesButtonSize / 8) + 'px'; // Increase padding for better visual
             responseElement.style.display = 'block';
@@ -109,16 +108,17 @@
     }
 
     function moveNoButton() {
-        const noButton = document.getElementById('noButton');
-        noButton.onmouseover = () => {
-            const newX = Math.random() * (window.innerWidth - noButton.clientWidth);
-            const newY = Math.random() * (window.innerHeight - noButton.clientHeight);
-            noButton.style.left = `${newX}px`;
-            noButton.style.top = `${newY}px`;
-        };
-    }
+    const noButton = document.getElementById('noButton');
+    noButton.onmouseover = () => {
+        // Calculate a new X position within the bounds of the window width minus the button's width
+        const newX = Math.random() * (window.innerWidth - noButton.clientWidth);
+        const newY = Math.random() * (window.innerHeight - noButton.clientHeight);
 
-
+        // Apply the new positions while ensuring the button stays within the viewport
+        noButton.style.left = `${newX}px`;
+        noButton.style.top = `${newY}px`;
+    };
+}
 
 </script>
 
