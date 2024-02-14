@@ -7,6 +7,11 @@
     <title>Be My Valentine</title>
     <style>
         body {
+        
+            background-image: url('/images/valentine_back.webp');
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the background image */
+
             font-family: 'Times New Roman', serif;
             text-align: center;
             padding: 50px;
@@ -29,9 +34,9 @@
             display: none;
         }
         button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
+            margin: 5px;
+            padding: 20px 30px;
+            font-size: 20px;
             color: #fff;
             background-color: #d63384;
             border: none;
@@ -39,24 +44,36 @@
             cursor: pointer;
             transition: transform 0.3s ease;
         }
+        .button-container {
         #noButton {
-            position: absolute; /* Enable absolute positioning */
-            top: 50%; /* Initial position */
-            left: 50%;
-            transform: translate(-50%, -50%);
+        position: absolute;
+        right: 10; /* Initial position to ensure it has a position property set */
+        bottom: 0px; /* Adjust these values as needed */
+
+}
+
+             /* Position the container absolutely to the parent */
+            bottom: 10px; /* Position it at the bottom of the parent container */
+            left: 0;
+            width: 100%;
+            text-align: center; /* Center buttons horizontally */
+            margin-top: 20px; /* Place buttons under the text */
+
         }
+
     </style>
 </head>
 <body>
 
 <div class="invitation">
-    <h1>Will You Be My Valentine?</h1>
-    <p class="languages">English: Will you be my Valentine?</p>
-    <p class="languages">Polski: Czy będziesz moją Walentynką?</p>
-    <p class="languages">Українська: Ти будеш моєю Валентинкою?</p>
-    <p class="languages">ქართული: იქნები ჩემი ვალენტინი?</p>
-    <button id="yesButton" onclick="showResponse('yes')">Yes</button>
-    <button id="noButton" onclick="showResponse('no')">No</button>
+    <h1>Czy będziesz moją Walentynką?</h1>
+    <p class="languages">Czy będziesz moją Walentynką?</p>
+    <p class="languages">Ти будеш моєю Валентинкою?</p>
+    <p class="languages">იქნები ჩემი ვალენტინი?</p>   
+    <div class="button-container">
+        <button id="yesButton" onclick="showResponse('yes')">Yes</button>
+        <button id="noButton" onclick="showResponse('no')">No</button>
+    </div>
     <div id="response" class="response"></div>
 </div>
 
@@ -64,24 +81,26 @@
     let yesButtonSize = 16; // Initial font size for "Yes" button
     let noClickCount = 0; // Count "No" button clicks
     const encouragingMessages = [
-        'Why not reconsider? There are so many reasons to say "Yes" 💖',
-        'Imagine all the joy and smiles saying "Yes" can bring 🌟',
-        'Saying "Yes" opens the door to a beautiful adventure together 💑'
+    "Naciśnięcie 'Tak' to jak wybranie pizzy zamiast sałatki - oczywiście lepszy wybór! 🍕❤️",
+    "Mówiąc 'Tak', oficjalnie stajemy się najlepszym duetem od czasów ciastek i mleka. Kto może temu zaprzeczyć? 🍪🥛",
+    "Jeśli naciśniesz 'Tak', obiecuję podzielić się z Tobą moim deserem. Czy to nie jest miłośćą! 🍰💖"
     ];
 
     function showResponse(answer) {
         const responseElement = document.getElementById('response');
         const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
         if (answer === 'yes') {
-            responseElement.innerHTML = '😘';
-            responseElement.style.display = 'block';
-        } else {
+            // Display the GIF and hide buttons
+            document.body.innerHTML = '<div style="height: 100vh; display: flex; justify-content: center; align-items: center; background-image: url(\'/images/valentine_back.webp\'); background-size: cover; background-position: center;"><img src="https://i.ibb.co/tJk5Vyr/By-My-Valentine.gif" alt="Be My Valentine"></div>';
+        }
+        else {
             noClickCount++;
             let messageIndex = noClickCount % encouragingMessages.length;
             responseElement.innerHTML = encouragingMessages[messageIndex];
             yesButtonSize += 2; // Increase font size by 2px
             yesButton.style.fontSize = yesButtonSize + 'px'; // Apply new font size
-            yesButton.style.padding = (10 + yesButtonSize / 16) + 'px ' + (20 + yesButtonSize / 8) + 'px'; // Increase padding for better visual
+            yesButton.style.padding = (25 + yesButtonSize / 16) + 'px ' + (20 + yesButtonSize / 8) + 'px'; // Increase padding for better visual
             responseElement.style.display = 'block';
             if (noClickCount >= 3) {
                 moveNoButton();
@@ -98,6 +117,9 @@
             noButton.style.top = `${newY}px`;
         };
     }
+
+
+
 </script>
 
 </body>
